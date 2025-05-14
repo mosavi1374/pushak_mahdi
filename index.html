@@ -3,47 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>فروبچه‌گانه مهدی</title>
+  <title>فروشگاه پوشاک مهدی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Vazir', sans-serif;
-      background-color: #fdfdfd;
-      color: #333;
-      line-height: 1.8;
+    * {
+	  box-sizing: border-box;
+      margin-top: -2px;
+	}
+	body {
+      font-family: 'Vazirmatn', sans-serif;
       margin: 0;
       padding: 0;
-    }
-
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 20px;
+      color: #333;
+      line-height: 1.8;
+      background: linear-gradient(to right, #f7b731, #ff7f50);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 50px;
+      transition: background 0.3s, color 0.3s;
     }
 
     header {
       background-color: #f7b731;
-      padding: 20px;
+      color: white;
+      padding: 15px 20px;
+      width: 100%;
+      max-width: 1200px;
       text-align: center;
-      border-radius: 0 0 12px 12px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      animation: fadeInDown 1s ease-in-out;
+	  line-height: normal;
+    }
+	.header-wave {
+	  position: relative;
+	  width: 100%;
+	  margin-top: -1px;
+	  line-height: 0;
+	  animation: fadeInDown 1s ease-in-out;
+	}
+
+	.header-wave svg {
+	  display: block;
+	  width: 100%;
+	  height: 60px;
+	}
+
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-      color: #fff;
+    #current-time {
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .color-theme-btn {
+      background-color: transparent;
+      color: white;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .color-theme-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
     }
 
     section {
-      background: #fff;
+      background: white;
       padding: 20px;
       margin-top: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      width: 95%;
+      max-width: 800px;
+      transition: transform 0.3s;
+    }
+
+    section:hover {
+      transform: scale(1.02);
     }
 
     a {
-      color: #f7b731;
+      color: #e17055;
       text-decoration: none;
+      font-weight: bold;
     }
 
     a:hover {
@@ -51,53 +103,406 @@
     }
 
     footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #aaa;
-      font-size: 14px;
+		text-align: center;
+		margin-top: 40px;
+		color: #888;
+		font-size: 14px;
+		background: azure;
+		padding: 18px;
+		width: 100%;
+		margin-bottom: -51px;
     }
+
+    .button {
+      display: inline-block;
+      background: #00b894;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background: #019875;
+    }
+
+    .dark-mode {
+      background: #2d3436;
+      color: #dfe6e9;
+    }
+
+    .dark-mode section {
+      background-color: #636e72;
+      color: white;
+    }
+
+    .dark-mode header {
+      background-color: #2d3436;
+    }
+
+    .dark-mode .button {
+      background-color: #098;
+    }
+
+    .dark-mode .button:hover {
+      background-color: #066;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00b894;
+      color: white;
+      padding: 9px 13px 10px 13px;
+      border-radius: 50%;
+      display: none;
+      cursor: pointer;
+	  font-size: 19px;
+    }
+
+    .welcome-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #f7b731;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: white;
+      font-size: 18px;
+      z-index: 100;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+
+    /* آکاردئون */
+    .accordion {
+	  cursor: pointer;
+	  background-color: #ffeaa7;
+	  border: none;
+	  outline: none;
+	  width: 100%;
+	  text-align: right;
+	  padding: 12px;
+	  font-size: 16px;
+	  border-radius: 8px;
+	  transition: background 0.3s;
+	  font-family: 'Vazirmatn', sans-serif;
+	  margin-bottom: 10px;
+	}
+
+
+    .accordion:hover {
+      background-color: #fdcb6e;
+    }
+
+    .panel {
+      display: none;
+      padding: 10px 15px;
+      background-color: #fff3e0;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .dark-mode .accordion {
+      background-color: #444;
+      color: white;
+    }
+
+    .dark-mode .accordion:hover {
+      background-color: #555;
+    }
+
+    .dark-mode .panel {
+      background-color: #666;
+      color: white;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        transform: translateY(-40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+	@media (max-width: 768px) {
+	  header h1 {
+		font-size: 20px;
+	  }
+
+	  header p, #current-time {
+		font-size: 14px;
+	  }
+
+	  .gallery img {
+		width: 100%;
+		height: auto;
+	  }
+
+	  section {
+		padding: 16px;
+		margin: 12px;
+	  }
+
+	  .button {
+		font-size: 14px;
+		padding: 8px 16px;
+	  }
+
+	  .accordion {
+		font-size: 15px;
+		padding: 10px;
+	  }
+
+	  .panel {
+		font-size: 14px;
+		padding: 10px;
+	  }
+	}
+	.product-card {
+	  position: relative;
+	  overflow: hidden;
+	  border-radius: 10px;
+	  transition: transform 0.3s;
+	}
+
+	.product-card img {
+	  width: 100%;
+	  height: 200px;
+	  object-fit: cover;
+	  display: block;
+	  transition: transform 0.4s;
+	}
+
+	.product-card:hover img {
+	  transform: scale(1.1);
+	}
+
+	.product-card .info {
+	  position: absolute;
+	  bottom: 0;
+	  width: 100%;
+	  padding: 10px;
+	  background: rgba(0, 0, 0, 0.6);
+	  color: #fff;
+	  transform: translateY(100%);
+	  transition: transform 0.3s;
+	  text-align: center;
+	}
+
+	.product-card:hover .info {
+	  transform: translateY(0);
+	}
+	.badge {
+	  position: absolute;
+	  top: 10px;
+	  left: 10px;
+	  background: crimson;
+	  color: white;
+	  padding: 4px 8px;
+	  border-radius: 6px;
+	  font-size: 12px;
+	}
+	.product-btn {
+	  display: inline-block;
+	  background: #00b894;
+	  color: white;
+	  padding: 6px 12px;
+	  margin-top: 5px;
+	  border-radius: 8px;
+	  text-decoration: none;
+	  font-size: 14px;
+	}
+
+	.product-btn:hover {
+	  background: #019875;
+	}
+
+
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>فروشگاه لباس بچه‌گانه مهدی</h1>
-    </header>
+  <div class="welcome-message">به فروشگاه مهدی خوش آمدید! 🎉</div>
 
-    <section>
-      <h2>درباره ما</h2>
-      <p>
-        فروشگاه ما با بهترین مدل‌های لباس بچه‌گانه مخصوص سنین ۰ تا ۷ سال فعالیت می‌کنه.
-        ارسال از شیراز انجام میشه و کیفیت کارا تضمینیه 💯
-      </p>
-    </section>
+  <header>
+    <h1>فروشگاه پوشاک بچه‌گانه مهدی</h1>
+    <p>شیک، باکیفیت، خوش‌قیمت 🌟</p>
+    <div class="header-flex">
+      <p id="current-time"></p>
+      <button class="color-theme-btn" onclick="toggleTheme()">🌙</button>
+    </div>
+  </header>
+	<div class="header-wave">
+	  <svg viewBox="0 0 1440 150" xmlns="http://www.w3.org/2000/svg">
+		<path fill="#f7b731" fill-opacity="1" d="M0,96L60,106.7C120,117,240,139,360,138.7C480,139,600,117,720,106.7C840,96,960,96,1080,117.3C1200,139,1320,181,1380,202.7L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+	  </svg>
+	</div>
 
-    <section>
-      <h2>ساعت کاری</h2>
-      <p>هر روز از ساعت <strong>۱۰ صبح تا ۱۰ شب</strong> پاسخگوی شما هستیم.</p>
-    </section>
+  <section>
+    <h2>درباره فروشگاه</h2>
+    <p>ما با بهترین مدل‌های لباس بچه‌گانه از نوزادی تا ۷ سال، در خدمت شما هستیم. ارسال از شیراز، کیفیت تضمینی 💯</p>
+  </section>
 
-    <section>
-      <h2>نحوه خرید</h2>
-      <p>
-        برای خرید فقط کافیه به کانال ما در ایتا پیام بدید یا روی لینک زیر کلیک کنید:
-        <br />
-        <a href="https://eitaa.com/mahdibaby" target="_blank">ورود به کانال ایتا</a>
-      </p>
-    </section>
+  <section>
+    <h2>ساعات پاسخگویی</h2>
+    <p>هر روز از ساعت <strong>۱۰ صبح تا ۱۰ شب</strong></p>
+  </section>
 
-    <section>
-      <h2>هزینه ارسال</h2>
-      <p>
-        هزینه ارسال برای شهر شیراز فقط <strong>۱۵ هزار تومان</strong>  
-        و برای شهرهای دیگه طبق تعرفه پست هست.
-      </p>
-    </section>
+  <section>
+    <h2>نحوه سفارش</h2>
+    <p>برای دیدن مدل‌ها و سفارش، وارد کانال ما در ایتا بشید:</p>
+    <a class="button" href="https://eitaa.com/pushak_mahdi" target="_blank">ورود به کانال</a>
+  </section>
 
-    <footer>
-      طراحی شده با ❤️ توسط فروشگاه مهدی
-    </footer>
-  </div>
+  <section>
+    <h2>هزینه ارسال</h2>
+    <p>شیراز: ۱۵ هزار تومان  
+    <br>سایر شهرها: طبق تعرفه پست یا تیپاکس</p>
+  </section>
+
+  <section>
+    <h2>گالری محصولات</h2>
+    <div class="gallery">
+      <div class="product-card">
+		<span class="badge">جدید</span>
+		  <img src="https://golimood.com/wp-content/uploads/2024/07/modle-lebas-bachegane-dokhtarane-11.jpg" alt="محصول 1">
+			  <div class="info">
+				<h3>تیشرت خرسی</h3>
+				<p>۱۹۵ هزار تومان</p>
+			  <a href="#" class="product-btn">سفارش</a>
+			  </div>	  
+	  </div>  
+      <div class="product-card">
+		<span class="badge">جدید</span>
+		  <img src="https://golimood.com/wp-content/uploads/2024/07/modle-lebas-bachegane-dokhtarane-11.jpg" alt="محصول 1">
+			  <div class="info">
+				<h3>تیشرت خرسی</h3>
+				<p>۱۹۵ هزار تومان</p>
+			  <a href="#" class="product-btn">سفارش</a>
+			  </div>	  
+	  </div>  
+      <div class="product-card">
+		<span class="badge">جدید</span>
+		  <img src="https://golimood.com/wp-content/uploads/2024/07/modle-lebas-bachegane-dokhtarane-11.jpg" alt="محصول 1">
+			  <div class="info">
+				<h3>تیشرت خرسی</h3>
+				<p>۱۹۵ هزار تومان</p>
+			  <a href="#" class="product-btn">سفارش</a>
+			  </div>	  
+	  </div>  
+      <div class="product-card">
+		<span class="badge">جدید</span>
+		  <img src="https://golimood.com/wp-content/uploads/2024/07/modle-lebas-bachegane-dokhtarane-11.jpg" alt="محصول 1">
+			  <div class="info">
+				<h3>تیشرت خرسی</h3>
+				<p>۱۹۵ هزار تومان</p>
+			  <a href="#" class="product-btn">سفارش</a>
+			  </div>	  
+	  </div>  
+      <div class="product-card">
+		<span class="badge">جدید</span>
+		  <img src="https://golimood.com/wp-content/uploads/2024/07/modle-lebas-bachegane-dokhtarane-11.jpg" alt="محصول 1">
+			  <div class="info">
+				<h3>تیشرت خرسی</h3>
+				<p>۱۹۵ هزار تومان</p>
+			  <a href="#" class="product-btn">سفارش</a>
+			  </div>	  
+	  </div>  	  
+    </div>
+  </section>
+
+  <section>
+    <h2>نکات مهم</h2>
+    <button class="accordion">📌 نکته ۱: سایزبندی چطوریه؟</button>
+    <div class="panel">
+      <p>سایزها دقیق مطابق جدول استاندارد ایرانی هستن. برای مشاوره، عکس قد و وزن کودک رو بفرستید.</p>
+    </div>
+
+    <button class="accordion">📌 نکته ۲: تعویض ممکنه؟</button>
+    <div class="panel">
+      <p>بله، در صورت ایراد یا اشتباه، تا ۳ روز تعویض انجام می‌شه (هزینه پست با مشتری).</p>
+    </div>
+
+    <button class="accordion">📌 نکته ۳: مدل‌های بیشتر کجا هستن؟</button>
+    <div class="panel">
+      <p>در کانال ایتا مرتب مدل‌های جدید گذاشته می‌شه. عضو بشید و نوتیف فعال کنید.</p>
+    </div>
+  </section>
+
+  <footer>
+    طراحی شده با ❤️ توسط فروشگاه مهدی
+  </footer>
+
+  <button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">👆</button>
+
+  <script>
+    // ساعت و تاریخ
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleString('fa-IR', { hour: '2-digit', minute: '2-digit' });
+      const dateString = now.toLocaleDateString('fa-IR');
+      document.getElementById('current-time').textContent = `تاریخ: ${dateString} | ساعت: ${timeString}`;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // دکمه برگشت به بالا
+    window.onscroll = function () {
+      const backToTopButton = document.getElementById('backToTop');
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+    };
+
+    // تم شب/روشن
+    function toggleTheme() {
+      const button = document.querySelector(".color-theme-btn");
+      document.body.classList.toggle('dark-mode');
+      button.innerHTML = document.body.classList.contains('dark-mode') ? '🌞' : '🌙';
+    }
+
+    // خوش‌آمدگویی
+    setTimeout(function () {
+      document.querySelector('.welcome-message').style.display = 'none';
+    }, 5000);
+
+    // آکاردئون نکات
+    const accordions = document.querySelectorAll(".accordion");
+    accordions.forEach(btn => {
+      btn.addEventListener("click", function () {
+        this.classList.toggle("active");
+        const panel = this.nextElementSibling;
+        panel.style.display = panel.style.display === "block" ? "none" : "block";
+      });
+    });
+  </script>
 </body>
 </html>
-
